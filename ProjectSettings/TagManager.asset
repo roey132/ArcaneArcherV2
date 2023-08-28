@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Border
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - EnemyCollision
+  - Border
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 391636291
+    locked: 0
+  - name: EffectBehindPlayer
+    uniqueID: 3671762223
+    locked: 0
+  - name: Player
+    uniqueID: 264699551
+    locked: 0
+  - name: EffectInfrontPlayer
+    uniqueID: 1465913779
+    locked: 0
+  - name: Enemy
+    uniqueID: 3980749717
+    locked: 0
