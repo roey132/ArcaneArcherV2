@@ -1,11 +1,13 @@
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class StatsManager : MonoBehaviour
+public class StatsManager : SerializedMonoBehaviour
 {
     public static StatsManager Instance;
 
+    [OdinSerialize] 
     private Dictionary<Stat, float> _stats = new Dictionary<Stat,float>();
     public static event Action<Stat> OnStatChange;
 

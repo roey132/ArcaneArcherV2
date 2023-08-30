@@ -7,12 +7,7 @@ public class PlayerMovementManager : MonoBehaviour
 
     [SerializeField] private Vector2 _movementVector = Vector2.zero;
 
-    [SerializeField] private float _tempPlayerSpeed; // TODO: change to get speed from stats
-
-    // Start is called before the first frame update
-    private void Awake()
-    {
-    }
+    [SerializeField] private StatsManager _playerStats;
 
     private void OnEnable()
     {
@@ -25,7 +20,7 @@ public class PlayerMovementManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = _movementVector * _tempPlayerSpeed;
+        _rb.velocity = _movementVector * _playerStats.GetStatValue(Stat.MovementSpeed);
     }
 
     private void OnMovementInput(Vector2 movementVector) 
