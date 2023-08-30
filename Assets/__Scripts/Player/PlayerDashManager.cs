@@ -11,7 +11,7 @@ public class PlayerDashManager : MonoBehaviour
     public static event Action OnTeleportStart;
     public static event Action OnTeleportEnd;
 
-    [SerializeField] private float _dashDistance;
+    [SerializeField] private float _dashDistance; //TODO: Handle dash distance and cooldown through a stat script
     [SerializeField] private float _dashCooldown;
     private float _dashTimer;
 
