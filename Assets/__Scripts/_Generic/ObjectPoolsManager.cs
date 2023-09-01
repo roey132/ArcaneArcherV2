@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using Sirenix.OdinInspector;
 
 
-public class ObjectPoolsManager : MonoBehaviour
+
+public class ObjectPoolsManager : SerializedMonoBehaviour
 {
     public static ObjectPoolsManager Instance;
 

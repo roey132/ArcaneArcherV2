@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _baseProjectileObject;
     private void Awake()
     {
-        ObjectPoolsManager.Instance.CreateObjectPool(_baseProjectileObject, _baseProjectileData.Name);
+        ObjectPoolsManager.Instance.CreateObjectPool(_baseProjectileObject, _baseProjectileData.ProjetileName);
     }
     // Start is called before the first frame update
     void Start()

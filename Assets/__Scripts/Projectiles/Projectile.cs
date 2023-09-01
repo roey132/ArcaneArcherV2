@@ -6,10 +6,27 @@ public class Projectile : Poolable
     [SerializeField] private LayerMask _hitLayerMask;
     [SerializeField] private Rigidbody2D _rb;
 
+    // temp timer
+    private float _timer;
+
     private void Awake()
     {
-        _poolName = _data.name;
+        _timer = 2f;
+        _poolName = _data.ProjetileName;
     }
+    private void OnEnable()
+    {
+        _timer = 2f;
+    }
+    private void Update()
+    {
+        _timer -= Time.deltaTime;
+        if (_timer < 0)
+        {
+            ReleaseSelfToPool();
+        }
+    }
+
 
     public virtual void InitProjectile(Vector2 projectileDirection, Vector2 _startPosition)
     {

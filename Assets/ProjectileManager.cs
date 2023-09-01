@@ -15,7 +15,8 @@ public class ProjectileManager : MonoBehaviour
 
 
     // temp timer
-    private float _timer = 1;
+    private float _timer = 0.1f;
+
     private void ShootArrows()
     {
         ShootOneArrow();
@@ -24,7 +25,7 @@ public class ProjectileManager : MonoBehaviour
 
     private void ShootOneArrow()
     {
-        GameObject currArrow = ObjectPoolsManager.Instance.PullObject(_currProjectileData.Name);
+        GameObject currArrow = ObjectPoolsManager.Instance.PullObject(_currProjectileData.ProjetileName);
         Projectile currArrowProjectile = currArrow.GetComponent<Projectile>();
 
         currArrowProjectile.InitProjectile(GetArrowDirection(), BowPosition.Instance.transform.position);
@@ -49,7 +50,7 @@ public class ProjectileManager : MonoBehaviour
         if (_timer < 0)
         {
             ShootArrows();
-            _timer = 1;
+            _timer = 0.1f;
         }
     }
 }
