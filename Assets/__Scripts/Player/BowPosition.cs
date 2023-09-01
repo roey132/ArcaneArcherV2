@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class BowPosition : MonoBehaviour
 {
+    public static BowPosition Instance;
     [SerializeField] private Transform _player;
     [SerializeField] private float _radius;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     // Update is called once per frame
     void Update()
