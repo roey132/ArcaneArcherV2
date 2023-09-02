@@ -14,17 +14,11 @@ public class PlayerManager : MonoBehaviour
 
     private void InitStats()
     {
-        _stats.CreateStat(Stat.AttackDamage, _baseStats.AttackDamage);
-        _stats.CreateStat(Stat.MagicDamage, _baseStats.MagicDamage);
-        _stats.CreateStat(Stat.PhysicalDamageMultiplierPct, _baseStats.PhysicalDamageMultiplierPct);
-        _stats.CreateStat(Stat.MagicalDamageMultiplierPct, _baseStats.MagicalDamageMultiplierPct);
-        _stats.CreateStat(Stat.AttackSpeed, _baseStats.AttackSpeed);
-        _stats.CreateStat(Stat.CastCooldownReductionPct, _baseStats.CastCooldownReductionPct);
-        _stats.CreateStat(Stat.MovementSpeed, _baseStats.MovementSpeed);
-        _stats.CreateStat(Stat.CriticalRatePct, _baseStats.CriticalRatePct);
-        _stats.CreateStat(Stat.CriticalDamageMultiplierPct, _baseStats.CriticalDamageMultiplierPct);
-        _stats.CreateStat(Stat.CriticalDamageMultiplierPct, _baseStats.CriticalDamageMultiplierPct);
-        _stats.CreateStat(Stat.NumberOfArrows, _baseStats.NumberOfArrows);
+        _stats.ClearStats();
+        foreach ((Stat stat, float value) in _baseStats.BasePlayerStats)
+        {
+            _stats.CreateStat(stat, value);
+        }
     }
 
     private void InitHealth()

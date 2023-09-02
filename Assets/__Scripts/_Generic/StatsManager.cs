@@ -39,6 +39,10 @@ public class StatsManager : SerializedMonoBehaviour
         _stats[stat] -= value;
         OnStatChange?.Invoke(stat);
     }
+    public void ClearStats()
+    {
+        _stats.Clear();
+    }
 }
 
 public enum Stat
@@ -52,5 +56,6 @@ public enum Stat
     MovementSpeed, // number
     CriticalRatePct, // percantage 
     CriticalDamageMultiplierPct, // percentage
-    NumberOfArrows // number
+    NumberOfArrows, // number
+    AttackCooldown, // number
 }
