@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class Projectile : Poolable
 {
-    [SerializeField] private ProjectileData _data;
+    [SerializeField] public ProjectileData Data;
     [SerializeField] private LayerMask _hitLayerMask;
     [SerializeField] private Rigidbody2D _rb;
 
-    // temp timer
+    // TODO : Delete temp timer
     private float _timer;
 
     private void Awake()
     {
         _timer = 2f;
-        _poolName = _data.ProjetileName;
+        _poolName = Data.ProjetileName;
     }
     private void OnEnable()
     {
@@ -26,15 +26,12 @@ public class Projectile : Poolable
             ReleaseSelfToPool();
         }
     }
-
-
     public virtual void InitProjectile(Vector2 projectileDirection, Vector2 _startPosition)
     {
         transform.position = _startPosition;
         SetArrowRotation(projectileDirection);
         SetArrowSpeed(projectileDirection);
     }
-
     private void SetArrowRotation(Vector2 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -42,6 +39,6 @@ public class Projectile : Poolable
     }
     private void SetArrowSpeed(Vector2 direction)
     {
-        _rb.velocity = direction.normalized * _data.Speed;
+        _rb.velocity = direction.normalized * Data.Speed;
     }
 }

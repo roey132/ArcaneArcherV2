@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class StatsManager : SerializedMonoBehaviour
 {
-    public static StatsManager Instance;
+    public static StatsManager PlayerStats;
 
     [OdinSerialize] 
     private Dictionary<Stat, float> _stats = new Dictionary<Stat,float>();
@@ -14,9 +14,9 @@ public class StatsManager : SerializedMonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (PlayerStats == null)
         {
-            Instance = this;
+            PlayerStats = this;
         }
     }
 

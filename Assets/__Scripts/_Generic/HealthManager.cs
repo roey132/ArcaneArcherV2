@@ -6,9 +6,9 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _currHealth;
 
-    private event Action OnDeath;
-    private event Action OnHealthHeal;
-    private event Action OnHealthReduce;
+    public event Action OnDeath;
+    public event Action OnHealthHeal;
+    public event Action OnHealthReduce;
 
     public float GetCurrHealth()
     {

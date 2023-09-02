@@ -1,7 +1,6 @@
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : Poolable
 {
     [SerializeField] private EnemyData _data;
     [SerializeField] private StatsManager _statsManager;
@@ -17,8 +16,25 @@ public class EnemyManager : MonoBehaviour
             _statsManager.CreateStat(stat, value);
         }
     }
+
+    private void OnDeath()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        InitEnemy();
+        _healthManager.OnDeath += OnDeath;
+    }
+    private void OnDisable()
+    {
+        _healthManager.OnDeath -= OnDeath;
+    }
+
     private void Awake()
     {
+        _poolName = _data.Name;
         InitEnemy();
     }
 }
