@@ -167,8 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c1f506097371a448fdb3903f7013f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyManager: {fileID: 809073658}
   _stats: {fileID: 455339380}
-  _attackState: {fileID: 0}
+  _attackState: {fileID: 1545210738}
   _enemyTransform: {fileID: 809073657}
 --- !u!1 &25283404
 GameObject:
@@ -15581,6 +15582,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1545210737}
+  - component: {fileID: 1545210738}
   m_Layer: 0
   m_Name: AttackState
   m_TagString: Untagged
@@ -15603,6 +15605,20 @@ Transform:
   m_Father: {fileID: 177573873}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1545210738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545210736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b89781575e8d4974db298937bc6cecec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyManager: {fileID: 809073658}
+  _idleState: {fileID: 842271931}
 --- !u!1 &1676040971
 GameObject:
   m_ObjectHideFlags: 0

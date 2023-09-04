@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseEnemyAttackState : MonoBehaviour
+public class BaseEnemyAttackState : ObjectState
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Manager")]
+    [SerializeField] private EnemyManager _enemyManager;
+
+    [Header("States")]
+    [SerializeField] private ObjectState _idleState;
+
+    public override void OnStateEnd()
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnStateStart()
     {
-        
+    }
+
+    public override ObjectState StateBehaviour()
+    {
+        print("Attack Performed");
+        _enemyManager.AttackPerformed();
+        return _idleState;
+
     }
 }

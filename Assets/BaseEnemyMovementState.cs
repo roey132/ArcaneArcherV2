@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BaseEnemyMovementState : ObjectState
 {
-    [Header("Stats")]
+    [Header("Managers")]
+    [SerializeField] private EnemyManager _enemyManager;
     [SerializeField] private StatsManager _stats;
 
     [Header("States")]
@@ -14,17 +15,16 @@ public class BaseEnemyMovementState : ObjectState
     [SerializeField] private Transform _enemyTransform;
     public override void OnStateEnd()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void OnStateStart()
     {
-        throw new System.NotImplementedException();
     }
 
     public override ObjectState StateBehaviour()
     {
         HandleMovement();
+        if (_enemyManager.CanAttack()) return _attackState; 
         return null;
     }
 
