@@ -6,20 +6,12 @@ public class EnemyManager : Poolable
     [SerializeField] private StatsManager _statsManager;
     [SerializeField] private HealthManager _healthManager;
 
-    public virtual void InitEnemy() 
-    {
-        _healthManager.InitHealth(_data.StartingHealth);
+    public float NextAttackTime { get; private set; }
 
-        _statsManager.ClearStats();
-        foreach ((Stat stat, float value) in _data.BaseStats)
-        {
-            _statsManager.CreateStat(stat, value);
-        }
-    }
-
-    private void OnDeath()
+    private void Awake()
     {
-        gameObject.SetActive(false);
+        _poolName = _data.Name;
+        InitEnemy();
     }
 
     private void OnEnable()
@@ -32,9 +24,27 @@ public class EnemyManager : Poolable
         _healthManager.OnDeath -= OnDeath;
     }
 
-    private void Awake()
+    public virtual void InitEnemy() 
     {
-        _poolName = _data.Name;
-        InitEnemy();
+        _healthManager.InitHealth(_data.StartingHealth);
+        NextAttackTime = 0;
+        _statsManager.ClearStats();
+        foreach ((Stat stat, float value) in _data.BaseStats)
+        {
+            _statsManager.CreateStat(stat, value);
+        }
+    }
+
+    private void OnDeath()
+    {
+        gameObject.SetActive(false);
+    }
+    public void AttackPerformed()
+    {
+        NextAttackTime = Time.time + _statsManager.GetStatValue(Stat.AttackCooldown);
+    }
+    public bool CanAttack()
+    {
+        return NextAttackTime < Time.time;
     }
 }

@@ -8,7 +8,7 @@ public class PlayerInputsManager : MonoBehaviour
 
     public static event Action<Vector2> OnMovementInput;
     public static event Action OnDashInput;
-    private float testTimer = 3;
+
     private void Awake()
     {
         _playerInputs = new PlayerInputs();
