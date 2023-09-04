@@ -11,18 +11,23 @@ public class BaseEnemyIdleState : ObjectState
 
     public override void OnStateEnd()
     {
-        throw new System.NotImplementedException();
     }
     public override void OnStateStart()
     {
-        throw new System.NotImplementedException();
     }
     public override ObjectState StateBehaviour()
     {
-        if (_enemyManager.CanAttack())
+        if (_attackState != null)
         {
-            return _attackState;
+            if (_enemyManager.CanAttack())
+            {
+                return _attackState;
+            }
         }
-        return _movementState;
+        if (_movementState != null)
+        {
+            return _movementState;
+        }
+        return null;
     }
 }
