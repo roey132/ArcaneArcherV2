@@ -1,9 +1,13 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class EnemyManager : Poolable
 {
+    [Required]
     [SerializeField] private EnemyData _data;
+    [Required]
     [SerializeField] private StatsManager _statsManager;
+    [Required]
     [SerializeField] private HealthManager _healthManager;
 
     public float NextAttackTime { get; private set; }

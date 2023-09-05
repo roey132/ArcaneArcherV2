@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
-public abstract class Poolable : MonoBehaviour
+public abstract class Poolable : SerializedMonoBehaviour
 {
     public string _poolName;
     public virtual void ReleaseSelfToPool() 

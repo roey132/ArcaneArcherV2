@@ -6,8 +6,7 @@ public class InventoryManager : SerializedMonoBehaviour
 {
     public static InventoryManager Instance;
 
-
-    [SerializeField] private Dictionary<ItemData, GameObject> _itemsInventory;
+    [SerializeField] private Dictionary<ItemData, int> _itemsInventory;
 
     private void Awake()
     {
@@ -16,15 +15,29 @@ public class InventoryManager : SerializedMonoBehaviour
             Instance = this;
         }
 
-        if (_itemsInventory == null) _itemsInventory = new Dictionary<ItemData, GameObject>();
+        if (_itemsInventory == null) _itemsInventory = new Dictionary<ItemData, int>();
     }
 
     public void AddItem(ItemData itemData)
     {
-        _itemsInventory.Add(itemData,itemData.itemObject);
+        if (_itemsInventory.ContainsKey(itemData))
+        {
+            _itemsInventory[itemData] += 1;
+            print($"added existing item, item: {itemData.Name}");
+            return;
+        }
+        print($"added new item, item: {itemData.Name}");
+        _itemsInventory.Add(itemData,1);
     }
     public void RemoveItem(ItemData itemData) 
     {
-        _itemsInventory.Remove(itemData);
+        if (_itemsInventory[itemData] == 1)
+        {
+            _itemsInventory.Remove(itemData);
+            print($"removed last item, item: {itemData.Name}");
+            return;
+        }
+        print($"removed item, item: {itemData.Name}");
+        _itemsInventory[itemData] -= 1;
     }
 }

@@ -23,8 +23,9 @@ public class ItemHandler
 
             StatsManager.PlayerStats.ReduceStatValue(key, value);
         }
+
     }
-    
+
     public void AddItem(ItemData itemData)
     {
         switch (itemData.Type) 
@@ -33,6 +34,8 @@ public class ItemHandler
                 AddStatItem((StatItemData)itemData);
                 break;
         }
+        InventoryManager.Instance.AddItem(itemData);
+
     }
     public void RemoveItem(ItemData itemData) 
     {
@@ -42,5 +45,6 @@ public class ItemHandler
                 RemoveStatItem((StatItemData)itemData);
                 break;
         }
+        InventoryManager.Instance.RemoveItem(itemData);
     }
-}
+}  
