@@ -11,11 +11,17 @@ public class PlayerInputsManager : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.OnGameStateChange += OnGameStateChange;
         _playerInputs = new PlayerInputs();
+    }
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChange -= OnGameStateChange;
     }
 
     private void OnEnable()
     {
+
         _playerInputs.Enable();
         _playerInputs.Player.Movement.performed += OnMovementPerformed;
         _playerInputs.Player.Movement.canceled += OnMovementCanceled;
@@ -26,6 +32,7 @@ public class PlayerInputsManager : MonoBehaviour
         _playerInputs.Disable();
         _playerInputs.Player.Movement.performed -= OnMovementPerformed;
         _playerInputs.Player.Movement.canceled -= OnMovementCanceled;
+        _playerInputs.Player.Dash.performed -= OnDashPerformed;
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext inputValue)
@@ -44,9 +51,10 @@ public class PlayerInputsManager : MonoBehaviour
     {
 
     }
-    // Update is called once per frame
-    void Update()
+
+    private void OnGameStateChange(GameState state)
     {
-        
+        gameObject.SetActive(state != GameState.IdleState);
+        print($"Player Inputs Enabled: {state != GameState.IdleState}");
     }
 }

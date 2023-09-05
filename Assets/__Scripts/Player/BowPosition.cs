@@ -14,9 +14,13 @@ public class BowPosition : MonoBehaviour
         {
             Instance = this;
         }
+        GameManager.OnGameStateChange += OnGameStateChanged; 
+    }
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChange -= OnGameStateChanged;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -26,5 +30,10 @@ public class BowPosition : MonoBehaviour
 
         transform.position = (Vector2)_player.position + direction * _radius;
         transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+    public void OnGameStateChanged(GameState state)
+    {
+        gameObject.SetActive(state == GameState.CombatState);
+        print($"Bow Manager Enabled: {state == GameState.CombatState} ");
     }
 }

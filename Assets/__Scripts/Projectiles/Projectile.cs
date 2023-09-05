@@ -1,9 +1,12 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class Projectile : Poolable
 {
+    [Required]
     [SerializeField] public ProjectileData Data;
     [SerializeField] private LayerMask _hitLayerMask;
+    [Required]
     [SerializeField] private Rigidbody2D _rb;
 
     // TODO : Delete temp timer

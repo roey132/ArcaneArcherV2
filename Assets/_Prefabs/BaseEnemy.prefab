@@ -504,6 +504,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7282166a957c0564f86f816771f02287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   _maxHealth: 0
   _currHealth: 0
 --- !u!114 &887422171128483619

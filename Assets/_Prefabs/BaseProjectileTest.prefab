@@ -47,6 +47,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cff538a856d0b244b6784e254c76784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   _poolName: 
   Data: {fileID: 11400000, guid: a9e46bda827222d428dadc1231007bbd, type: 2}
   _hitLayerMask:

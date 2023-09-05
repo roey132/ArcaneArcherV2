@@ -19,7 +19,21 @@ public class ProjectileManager : MonoBehaviour
 
 
     public static event Action OnArrowShoot;
-
+    private void Awake()
+    {
+        GameManager.OnGameStateChange += OnGameStateChanged;
+        _currProjectileData = _baseProjectileData;
+    }
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChange -= OnGameStateChanged;
+    }
+    void Update()
+    {
+        if (_nextFireTime > Time.time) return;
+        _nextFireTime = Time.time + 1 / _playerStats.GetStatValue(Stat.AttackSpeed);
+        ShootArrows();
+    }
 
     private void ShootArrows()
     {
@@ -67,16 +81,8 @@ public class ProjectileManager : MonoBehaviour
         return (mousePosition - (Vector2)_player.position).normalized;
     }
 
-
-    private void Awake()
+    private void OnGameStateChanged(GameState state)
     {
-        _currProjectileData = _baseProjectileData;
-    }
-
-    void Update()
-    {
-        if (_nextFireTime > Time.time) return;
-        _nextFireTime = Time.time + 1 / _playerStats.GetStatValue(Stat.AttackSpeed);
-        ShootArrows();
+        gameObject.SetActive(state == GameState.CombatState);
     }
 }

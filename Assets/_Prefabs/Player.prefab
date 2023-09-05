@@ -44,6 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7282166a957c0564f86f816771f02287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   _maxHealth: 0
   _currHealth: 0
 --- !u!1 &2448575715052869280
@@ -637,7 +646,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  MovementSpeed: 5
   StartingHealth: 50
   DashCooldown: 3
   DashDistance: 10

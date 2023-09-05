@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerBaseStats : SerializedMonoBehaviour
 {
-    [Header("Damage Stats")]
-    [SerializeField] public float MovementSpeed;
-
+    [Header("Generic Stats")]
     [SerializeField] public Dictionary<Stat, float> BasePlayerStats;
 
     [Header("Health Stats")]
