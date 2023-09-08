@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class ProjectileCollisionManager : MonoBehaviour
+public class PlayerProjectileCollisionManager : MonoBehaviour
 {
     public event Action OnEnemyHit;
     [SerializeField] private Projectile _projectile;
@@ -26,6 +26,7 @@ public class ProjectileCollisionManager : MonoBehaviour
     private void HandleEnemyCollision(Collider2D collision)
     {
         if (!collision.CompareTag("EnemyCollider")) return;
+
         collision.GetComponent<EnemyCollisionManager>().HitEnemy(_projectile.Data.DamageMultiplier);
         _penetrationCount--;
         if (_penetrationCount <= 0)
