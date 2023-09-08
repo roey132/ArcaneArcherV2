@@ -15,11 +15,19 @@ public class ProjectileCollisionManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyCollider"))
-        {
-            collision.GetComponent<EnemyCollisionManager>().HitEnemy(_projectile.Data.DamageMultiplier);
-            _penetrationCount--;
-        }
+        HandleBorderCollision(collision);
+        HandleEnemyCollision(collision);
+    }
+    private void HandleBorderCollision(Collider2D collision)
+    {
+        if (!collision.CompareTag("Border")) return;
+        _projectile.ReleaseSelfToPool();
+    }
+    private void HandleEnemyCollision(Collider2D collision)
+    {
+        if (!collision.CompareTag("EnemyCollider")) return;
+        collision.GetComponent<EnemyCollisionManager>().HitEnemy(_projectile.Data.DamageMultiplier);
+        _penetrationCount--;
         if (_penetrationCount <= 0)
         {
             _projectile.ReleaseSelfToPool();
