@@ -53,13 +53,10 @@ public class PlayerDashManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _dashDirection, _dashDistance, _wallsLayerMask);
         if (hit.collider != null)
         {
-            if (hit.collider.CompareTag("Wall"))
+            float hitDistance = hit.distance;
+            if (hitDistance < _dashDistance)
             {
-                float hitDistance = hit.distance;
-                if (hitDistance < _dashDistance)
-                {
-                    currDashDistance = hitDistance;
-                }
+                currDashDistance = hitDistance;
             }
         }
 
