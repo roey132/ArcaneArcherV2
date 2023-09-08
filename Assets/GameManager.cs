@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : SerializedMonoBehaviour
 {
+    public static GameManager Instance;
+
     [Required]
     [SerializeField] private ProjectileData _baseProjectileData;
     [Required]
@@ -33,6 +35,11 @@ public class GameManager : SerializedMonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         ObjectPoolsManager.Instance.CreateObjectPool(_baseProjectileObject, _baseProjectileData.ProjetileName);
     }
     private void Start()

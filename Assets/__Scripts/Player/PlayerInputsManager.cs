@@ -4,13 +4,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputsManager : MonoBehaviour
 {
+    public static PlayerInputsManager Instance;
+
     private PlayerInputs _playerInputs;
 
     public static event Action<Vector2> OnMovementInput;
     public static event Action OnDashInput;
+    public static event Action OnInteractInput;
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         GameManager.OnGameStateChange += OnGameStateChange;
         _playerInputs = new PlayerInputs();
     }
@@ -26,6 +34,7 @@ public class PlayerInputsManager : MonoBehaviour
         _playerInputs.Player.Movement.performed += OnMovementPerformed;
         _playerInputs.Player.Movement.canceled += OnMovementCanceled;
         _playerInputs.Player.Dash.performed += OnDashPerformed;
+        _playerInputs.Player.Interact.performed += OnInteractPerformed;
     }
     private void OnDisable()
     {
@@ -33,6 +42,7 @@ public class PlayerInputsManager : MonoBehaviour
         _playerInputs.Player.Movement.performed -= OnMovementPerformed;
         _playerInputs.Player.Movement.canceled -= OnMovementCanceled;
         _playerInputs.Player.Dash.performed -= OnDashPerformed;
+        _playerInputs.Player.Interact.performed -= OnInteractPerformed;
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext inputValue)
@@ -50,6 +60,10 @@ public class PlayerInputsManager : MonoBehaviour
     private void OnUseArrowHold()
     {
 
+    }
+    private void OnInteractPerformed(InputAction.CallbackContext inputValue)
+    {
+        OnInteractInput?.Invoke();
     }
 
     private void OnGameStateChange(GameState state)
