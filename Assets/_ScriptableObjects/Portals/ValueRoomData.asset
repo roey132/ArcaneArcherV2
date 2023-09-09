@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  PortalName: 
-  PortalType: 0
-  InRoomGameState: 0
-  PortalIcon: {fileID: 0}
+  PortalName: Value Room
+  PortalType: 1
+  InRoomGameState: 2
+  PortalIcon: {fileID: 62139348, guid: 54af6e0a499bce04685cbbe5be6d7cfa, type: 3}

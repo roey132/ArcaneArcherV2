@@ -1,12 +1,20 @@
 using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
-public class RoomPortal : SerializedMonoBehaviour
+public class RoomPortal : Interactable
 {
+    public static event Action OnPortalInteraction;
+
     [SerializeField] private PortalData _portalData;
     [SerializeField] private SpriteRenderer _portalIcon;
     [SerializeField] private SpriteRenderer _portalRender;
 
+    [Button]
+    private void ActivatePortal()
+    {
+        Interact();
+    }
     public void InitPortal(PortalData portalData)
     {
         _portalData = portalData;
@@ -14,10 +22,11 @@ public class RoomPortal : SerializedMonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public void ActivatePortal()
+    public override void Interact()
     {
         GameManager.Instance.ChangeGameState(_portalData.InRoomGameState);
         gameObject.SetActive(false);
+        OnPortalInteraction.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
