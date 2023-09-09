@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "Portal Data", menuName = "Generics/Portal Data")]
 public class PortalData : SerializedScriptableObject
 {
     [Required]

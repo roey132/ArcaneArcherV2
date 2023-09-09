@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class RoomPortalManager : SerializedMonoBehaviour
+public class RoomPortal : SerializedMonoBehaviour
 {
     [SerializeField] private PortalData _portalData;
     [SerializeField] private SpriteRenderer _portalIcon;
