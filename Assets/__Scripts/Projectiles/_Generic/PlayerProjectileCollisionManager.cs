@@ -33,5 +33,6 @@ public class PlayerProjectileCollisionManager : MonoBehaviour
         {
             _projectile.ReleaseSelfToPool();
         }
+        OnEnemyHit?.Invoke();
     }
 }
