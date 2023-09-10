@@ -10,6 +10,7 @@ public class GameManager : SerializedMonoBehaviour
     [SerializeField] private ProjectileData _baseProjectileData;
     [Required]
     [SerializeField] private GameObject _baseProjectileObject;
+    [ShowInInspector] public int CurrentRoomDifficulty { get; private set; }
 
     [Header("States")]
     [Required]

@@ -24,4 +24,4 @@ MonoBehaviour:
   PortalName: Shop Room
   PortalType: 2
   InRoomGameState: 1
-  PortalIcon: {fileID: 886289200, guid: 54af6e0a499bce04685cbbe5be6d7cfa, type: 3}
+  PortalIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

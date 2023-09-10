@@ -10,16 +10,18 @@ public class PortalManager : SerializedMonoBehaviour
     [SerializeField] private GameObject _portalPrefab;
 
     [SerializeField] private float _distanceBetweenPortals;
+    [SerializeField] private List<GameObject> _generatedPortals;
 
-    private List<GameObject> _generatedPortals;
-
+    [Title("Debugging")]
     [Button]
     public void GeneratePortalsTester()
     {
         GeneratePortals();
     }
+
     private void Awake()
     {
+        Extensions.RemoveAllChildObjects(gameObject);
         _generatedPortals = new List<GameObject>();
     }
 
@@ -29,12 +31,14 @@ public class PortalManager : SerializedMonoBehaviour
     }
     private void OnDisable()
     {
+        Extensions.RemoveAllChildObjects(gameObject);
         RoomPortal.OnPortalInteraction -= OnPortalInteraction;
     }
 
     private void GeneratePortal(PortalData portalData)
     {
-        GameObject currPortal = Instantiate(_portalPrefab);
+        GameObject currPortal = Instantiate(_portalPrefab,transform);
+        currPortal.name = portalData.PortalName;
         _generatedPortals.Add(currPortal);
         RoomPortal roomPortal = currPortal.GetComponent<RoomPortal>();
         roomPortal.InitPortal(portalData);
@@ -75,6 +79,7 @@ public class PortalManager : SerializedMonoBehaviour
         {
             Destroy(portalObject);
         }
+        
     }
 
     private void OnPortalInteraction()

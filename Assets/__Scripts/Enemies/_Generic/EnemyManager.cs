@@ -51,4 +51,9 @@ public class EnemyManager : Poolable
     {
         return NextAttackTime < Time.time;
     }
+
+    public EnemyData GetEnemyData()
+    {
+        return _data;
+    }
 }

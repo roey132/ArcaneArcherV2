@@ -38,7 +38,6 @@ public class PlayerInteractManager : MonoBehaviour
                 minDistance = absDistance;
             }
         }
-        print(closest);
         return closest;
     }
     private void OnTriggerEnter2D(Collider2D collision)

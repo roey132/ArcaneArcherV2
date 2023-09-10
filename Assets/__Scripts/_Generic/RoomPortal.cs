@@ -10,6 +10,7 @@ public class RoomPortal : Interactable
     [SerializeField] private SpriteRenderer _portalIcon;
     [SerializeField] private SpriteRenderer _portalRender;
 
+    [Title("Debugging")]
     [Button]
     private void ActivatePortal()
     {

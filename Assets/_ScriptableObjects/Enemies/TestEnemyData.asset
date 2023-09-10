@@ -73,7 +73,7 @@ MonoBehaviour:
       Data: 6
     - Name: $v
       Entry: 4
-      Data: 5
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -88,3 +88,4 @@ MonoBehaviour:
   ScaleMultiplier: 1
   Rarity: 100
   ReferenceSprite: {fileID: -31777027, guid: 3db50d5bbd47ad143b8f2ebf32663cef, type: 3}
+  EnemyValue: 0

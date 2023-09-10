@@ -16,4 +16,5 @@ public class EnemyData : SerializedScriptableObject
     public float ScaleMultiplier;
     public int Rarity;
     public Sprite ReferenceSprite;
+    public int EnemyValue;
 }
