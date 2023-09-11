@@ -49,4 +49,13 @@ public class ObjectPoolsManager : SerializedMonoBehaviour
     {
         _pools[objectName].Release(gameObject);
     }
+    public void ReturnAllObjectsToPool(string objectName)
+    {
+        Transform currPool = transform.Find(objectName);
+        int childCount = currPool.transform.childCount;
+        for (int i = childCount - 1; i >= 0; i--)
+        {
+            ReleaseObject(objectName, currPool.GetChild(i).gameObject);
+        }
+    }
 }

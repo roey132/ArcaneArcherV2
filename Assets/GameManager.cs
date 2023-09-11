@@ -10,6 +10,7 @@ public class GameManager : SerializedMonoBehaviour
     [SerializeField] private ProjectileData _baseProjectileData;
     [Required]
     [SerializeField] private GameObject _baseProjectileObject;
+    [ShowInInspector] public int CurrentGameDifficulty { get; private set; }
     [ShowInInspector] public int CurrentRoomDifficulty { get; private set; }
 
     [Header("States")]
@@ -32,7 +33,16 @@ public class GameManager : SerializedMonoBehaviour
     {
         ChangeGameState(GameState.CombatState);
     }
+
+
+
     public static event Action<GameState> OnGameStateChange;
+    public static event Action OnCombatRoomEnd;
+
+    public void EndCombatRoom()
+    {
+        OnCombatRoomEnd?.Invoke();
+    }
 
     private void Awake()
     {
@@ -40,7 +50,7 @@ public class GameManager : SerializedMonoBehaviour
         {
             Instance = this;
         }
-
+        CurrentRoomDifficulty = 1;
         ObjectPoolsManager.Instance.CreateObjectPool(_baseProjectileObject, _baseProjectileData.ProjetileName);
     }
     private void Start()

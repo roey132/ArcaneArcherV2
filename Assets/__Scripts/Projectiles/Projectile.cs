@@ -9,25 +9,16 @@ public class Projectile : Poolable
     [Required]
     [SerializeField] private Rigidbody2D _rb;
 
-    // TODO : Delete temp timer
-    private float _timer;
-
     private void Awake()
     {
-        _timer = 2f;
         _poolName = Data.ProjetileName;
     }
     private void OnEnable()
     {
-        _timer = 2f;
     }
     private void Update()
     {
-        _timer -= Time.deltaTime;
-        if (_timer < 0)
-        {
-            ReleaseSelfToPool();
-        }
+
     }
     public virtual void InitProjectile(Vector2 projectileDirection, Vector2 _startPosition)
     {
