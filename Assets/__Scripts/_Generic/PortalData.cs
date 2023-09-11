@@ -7,14 +7,14 @@ public class PortalData : SerializedScriptableObject
     [Required]
     public string PortalName;
     [Required]
-    public PortalType PortalType;
+    public RoomType RoomType;
     [Required]
     public GameState InRoomGameState;
     [Required]
     public Sprite PortalIcon;
 }
 
-public enum PortalType
+public enum RoomType
 {
     TimerCombat,
     ValueCombat,

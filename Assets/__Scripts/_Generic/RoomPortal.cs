@@ -25,7 +25,7 @@ public class RoomPortal : Interactable
 
     public override void Interact()
     {
-        GameManager.Instance.ChangeGameState(_portalData.InRoomGameState);
+        GameFlowManager.InitRoomStates(_portalData.RoomType, _portalData.InRoomGameState, RoomState.RoomStart);
         gameObject.SetActive(false);
         OnPortalInteraction.Invoke();
     }

@@ -14,11 +14,11 @@ public class BowPosition : MonoBehaviour
         {
             Instance = this;
         }
-        GameManager.OnGameStateChange += OnGameStateChanged; 
+        GameFlowManager.OnGameStateChange += OnGameStateChanged; 
     }
     private void OnDestroy()
     {
-        GameManager.OnGameStateChange -= OnGameStateChanged;
+        GameFlowManager.OnGameStateChange -= OnGameStateChanged;
     }
 
     void Update()

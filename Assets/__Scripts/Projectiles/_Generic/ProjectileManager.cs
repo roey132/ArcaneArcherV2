@@ -21,12 +21,12 @@ public class ProjectileManager : MonoBehaviour
     public static event Action OnArrowShoot;
     private void Awake()
     {
-        GameManager.OnGameStateChange += OnGameStateChanged;
+        GameFlowManager.OnGameStateChange += OnGameStateChanged;
         _currProjectileData = _baseProjectileData;
     }
     private void OnDestroy()
     {
-        GameManager.OnGameStateChange -= OnGameStateChanged;
+        GameFlowManager.OnGameStateChange -= OnGameStateChanged;
     }
     void Update()
     {

@@ -19,17 +19,16 @@ public class PlayerInputsManager : MonoBehaviour
             Instance = this;
         }
 
-        GameManager.OnGameStateChange += OnGameStateChange;
+        GameFlowManager.OnGameStateChange += OnGameStateChange;
         _playerInputs = new PlayerInputs();
     }
     private void OnDestroy()
     {
-        GameManager.OnGameStateChange -= OnGameStateChange;
+        GameFlowManager.OnGameStateChange -= OnGameStateChange;
     }
 
     private void OnEnable()
     {
-
         _playerInputs.Enable();
         _playerInputs.Player.Movement.performed += OnMovementPerformed;
         _playerInputs.Player.Movement.canceled += OnMovementCanceled;

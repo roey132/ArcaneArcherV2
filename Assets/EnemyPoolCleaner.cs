@@ -7,11 +7,11 @@ public class EnemyPoolCleaner : SerializedMonoBehaviour
     [SerializeField] private List<GameObject> _enemiesToReturn;
     private void Awake()
     {
-        GameManager.OnCombatRoomEnd += ReturnEnemiesToPool;
+        GameFlowManager.OnRoomStateChange += OnRoomEnd;
     }
     private void OnDestroy()
     {
-        GameManager.OnCombatRoomEnd -= ReturnEnemiesToPool;
+        GameFlowManager.OnRoomStateChange -= OnRoomEnd;
     }
     private void ReturnEnemiesToPool()
     {
@@ -20,5 +20,11 @@ public class EnemyPoolCleaner : SerializedMonoBehaviour
             EnemyData _data = enemyPrefab.GetComponent<EnemyManager>().GetEnemyData();
             ObjectPoolsManager.Instance.ReturnAllObjectsToPool(_data.Name);
         }
+    }
+
+    private void OnRoomEnd(RoomState roomState)
+    {
+        if (roomState != RoomState.RoomEnd) return;
+        ReturnEnemiesToPool();
     }
 }

@@ -17,31 +17,20 @@ public class GameManager : SerializedMonoBehaviour
     [Required]
     [SerializeField] private GameState _startingGameState;
     [ReadOnly]
-    [SerializeField] private GameState _currState;
     [ButtonGroup]
     private void Idle()
     {
-        ChangeGameState(GameState.IdleState);
+        GameFlowManager.Instance.ChangeGameState(GameState.IdleState);
     }
     [ButtonGroup]
     private void Interactive()
     {
-        ChangeGameState(GameState.InteractiveState);
+        GameFlowManager.Instance.ChangeGameState(GameState.InteractiveState);
     }
     [ButtonGroup]
     private void Combat()
     {
-        ChangeGameState(GameState.CombatState);
-    }
-
-
-
-    public static event Action<GameState> OnGameStateChange;
-    public static event Action OnCombatRoomEnd;
-
-    public void EndCombatRoom()
-    {
-        OnCombatRoomEnd?.Invoke();
+        GameFlowManager.Instance.ChangeGameState(GameState.CombatState);
     }
 
     private void Awake()
@@ -55,23 +44,12 @@ public class GameManager : SerializedMonoBehaviour
     }
     private void Start()
     {
-        ChangeGameState(_startingGameState);
+        GameFlowManager.Instance.ChangeGameState(_startingGameState);
     }
-    public void ChangeGameState(GameState state)
-    {
-        _currState = state;
-        print($"GameState changed to: {state}");
-        OnGameStateChange?.Invoke(state);
-    }
+
 
 
 
 
 }
 
-public enum GameState
-{
-    IdleState,
-    InteractiveState,
-    CombatState
-}

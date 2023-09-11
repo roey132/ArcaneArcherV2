@@ -10,28 +10,48 @@ public class TimerRoomManager : SerializedMonoBehaviour
     [Required, SerializeField] private Collider2D _spawnArea;
 
     [ShowInInspector] private int _maxEnemiesSpawned;
+
     [ShowInInspector] private float _maxTimeBetweenSpawns;
-    [ShowInInspector] private float _minTimeBetweenSpawns;
+
     [ShowInInspector] private float _nextSpawnTime;
     [ShowInInspector] private float _maxEnemyValue;
 
     public static event Action OnTimerRoomStart;
     public static event Action OnTimerRoomEnd;
 
+    private bool _roomActive;
+
     [Button]
     private void ManualStartRoom()
     {
-        RoomStart();
+        GameFlowManager.InitRoomStates(RoomType.TimerCombat, GameState.InteractiveState, RoomState.RoomStart);
     }
-
 
     [Title("Debugging")]
     [GUIColor("Green"), SerializeField, DisplayAsString(FontSize = 25, Alignment = TextAlignment.Left)] 
     private float _roomTimer;
 
+    private void Awake()
+    {
+        GameFlowManager.OnRoomTypeChange += OnRoomTypeChange;
+    }
+    private void OnDestroy()
+    {
+        GameFlowManager.OnRoomTypeChange -= OnRoomTypeChange;
+    }
+    private void OnEnable()
+    {
+        GameFlowManager.OnRoomStateChange += OnRoomStateChange;
+    }
+    private void OnDisable()
+    {
+        GameFlowManager.OnRoomStateChange -= OnRoomStateChange;
+    }
 
     void Update()
     {
+        if (!_roomActive) return;
+
         _roomTimer -= Time.deltaTime;
         if (_roomTimer < 0)
         {
@@ -48,19 +68,37 @@ public class TimerRoomManager : SerializedMonoBehaviour
 
     private void RoomStart()
     {
-        print("Timer Room Started");
-        gameObject.SetActive(true);
         _roomTimer = _startTimer;
         _maxEnemiesSpawned = DifficultyCalculations.MaxEnemiesSpawned(GameManager.Instance.CurrentRoomDifficulty);
         _maxTimeBetweenSpawns = DifficultyCalculations.MaxTimeBetweenSpawns(GameManager.Instance.CurrentRoomDifficulty);
-        _minTimeBetweenSpawns = DifficultyCalculations.MinTimeBetweenSpawns(GameManager.Instance.CurrentRoomDifficulty);
         _maxEnemyValue = DifficultyCalculations.DifficultyValue(GameManager.Instance.CurrentRoomDifficulty);
+        _roomActive = true;
+        OnTimerRoomStart?.Invoke();
     }
     private void RoomEnd()
     {
         // TODO : Handle Combat room ending better
         print("Timer Room Ended");
-        GameManager.Instance.EndCombatRoom();
+        GameFlowManager.Instance.ChangeRoomState(RoomState.RoomEnd);
         gameObject.SetActive(false);
+        OnTimerRoomEnd?.Invoke();
+    }
+
+    private void OnRoomTypeChange(RoomType type)
+    {
+        if (type != RoomType.TimerCombat) 
+        {
+            print("room type is not done correctly");
+            gameObject.SetActive(false);
+            return;
+        }
+        print("activating timer room");
+        gameObject.SetActive(true);
+    }
+
+    private void OnRoomStateChange(RoomState state)
+    {
+        if (state != RoomState.RoomActive) return;
+        RoomStart();
     }
 }
